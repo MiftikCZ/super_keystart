@@ -64,8 +64,14 @@ let keybinds = new Keybinds([
         color:"green"
     }),
     new Keybind({
-        key: ["/","d"],
-        mean: "duckduckgo",
+        key: ["s","d"],
+        mean: "duckduckgo",        
+        action: ({askThen}) => {
+            askThen({
+                prefix: "search with duckduckgo",
+                doNext: (val) => { window.open("https://duckduckgo.com/?q="+encodeURIComponent(val)) }
+            })
+        },
         color:"purple"
     }),
     new Keybind({
@@ -77,8 +83,37 @@ let keybinds = new Keybinds([
     new Keybind({
         key: ["g", "e"],
         mean: "goto user / project",
+        action: ({askThen}) => {
+            askThen({
+                prefix: "name/repo",
+                doNext: (val) => { window.open("https://github.com/"+val) }
+            })
+        },
         color:"purple"
     }),
+     new Keybind({
+        key: ["t", "h"],
+        mean: "check color",
+        action: ({askThen}) => {
+            askThen({
+                prefix: "hex color",
+                doNext: (val) => { window.open("https://coolors.co/"+val.replace("#","")) }
+            })
+        },
+        color:"purple"
+    }),
+    new Keybind({
+        key: ["t", "o"],
+        mean: "check contrast",
+        action: ({askThen}) => {
+            askThen({
+                prefix: "hex color",
+                doNext: (val) => { window.open("https://coolors.co/contrast-checker/"+val.replace("#","")) }
+            })
+        },
+        color:"purple"
+    }),
+    //#202e25
     new Keybind({
         key: ["g", "m"],
         mean: "miftikcz",
@@ -139,7 +174,8 @@ let keybinds = new Keybinds([
     new Keybind({
         key: ["t","c"],
         mean: "color picker",
-        color:"purple"
+        action: "link;coolors.co",
+        color:"blue"
     }),
     new Keybind({
         key: ["t","e"],
@@ -172,29 +208,43 @@ let keybinds = new Keybinds([
         action: "link;chat.openai.com/chat",
     }),
     new Keybind({
-        key: ["/"],
+        key: ["s"],
         mean: "search on",
         action: "setpage",
         color:"orange"
     }),
     new Keybind({
-        key: ["/", "g"],
+        key: ["s", "g"],
         mean: "google",
+        action: ({askThen}) => {
+            askThen({
+                prefix: "search with google",
+                doNext: (val) => { window.open("https://google.com/search?q="+encodeURIComponent(val)) }
+            })
+        },
         color:"purple"
     }),
     new Keybind({
-        key: ["/", "a"],
+        key: ["s", "a"],
+        action: ({askThen}) => {
+            askThen({
+                prefix: "search on AUR",
+                doNext: (val) => { window.open("https://aur.archlinux.org/packages?K="+encodeURIComponent(val)) }
+            })
+        },
         mean: "AUR",
         color:"purple"
     }),
     new Keybind({
-        key: ["/", "x"],
+        key: ["s", "x"],        
+        action: ({askThen}) => {
+            askThen({
+                prefix: "search with searxng",
+                doNext: (val) => { window.open("https://searx.work/search?q="+encodeURIComponent(val)) }
+            })
+        },
         mean: "searxng",
         color:"purple"
-    }),
-    new Keybind({
-        key: ["h"],
-        mean: "show manual",
     }),
 ])
 
